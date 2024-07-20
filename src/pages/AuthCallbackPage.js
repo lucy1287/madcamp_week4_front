@@ -8,7 +8,7 @@ const AuthCallbackPage = () => {
             const params = new URLSearchParams(window.location.search);
             const code = params.get('code');
             const clientId = process.env.REACT_APP_JAVASCRIPT_API_KEY; // 카카오 JavaScript 키
-            const redirectUri = 'http://localhost:3000/auth/callback'; // Redirect URI
+            const redirectUri = 'http://localhost:3000/auth'; // Redirect URI
 
             try {
                 const response = await axios.post('https://kauth.kakao.com/oauth/token', null, {
@@ -24,6 +24,8 @@ const AuthCallbackPage = () => {
                 });
 
                 const { access_token } = response.data;
+
+                console.log(access_token)
 
                 // 액세스 토큰을 사용하여 사용자 정보 요청
                 const userInfoResponse = await axios.get('https://kapi.kakao.com/v2/user/me', {
