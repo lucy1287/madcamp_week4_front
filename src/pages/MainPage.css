@@ -15,8 +15,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden; /* 스크롤바 숨김 */
-  }
+  overflow: auto; /* 기본 스크롤바 설정 */
+}
   
   .main-page {
     text-align: center;
