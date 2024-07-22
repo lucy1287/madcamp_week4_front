@@ -48,3 +48,16 @@ code {
     font-family: 'Nanum GipEumBalGeum';
     src: url('./fonts/나눔손글씨 기쁨밝음.ttf') format('truetype');
 }
+
+/* 폰트 선택 스타일 */
+.font-swatch {
+  cursor: pointer;
+  padding: 5px;
+  margin: 2px;
+  border: 1px solid transparent;
+  display: inline-block;
+}
+
+.font-swatch.selected {
+  border: 1px solid #000;
+}
