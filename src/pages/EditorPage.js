@@ -40,6 +40,15 @@ const EditorPage = () => {
         setSelectedFont(font);
     };
 
+    const convertNewlinesToBr = (text) => {
+        return text.split('\n').map((line, index) => (
+            <React.Fragment key={index}>
+                {line}
+                <br />
+            </React.Fragment>
+        ));
+    };
+
     return (
         <div className="editor-page">
             <header>
@@ -100,19 +109,19 @@ const EditorPage = () => {
                     <div className="image-selection">
                         <p>Select Background Image:</p>
                         <div className="images">
-                            {['https://i.pinimg.com/236x/dd/fa/b1/ddfab1e5d640d64d908a28460141455c.jpg', 
-                            'https://i.pinimg.com/236x/13/62/25/1362258d5fa4a20660ab5ede0ce9c0ed.jpg', 
-                            'https://i.pinimg.com/564x/b1/da/ea/b1daea970a878f2dc429e3ed32a6cb31.jpg',
-                            'https://i.pinimg.com/236x/93/be/ce/93bece78e7528240f876e3b7483ce336.jpg',
-                            'https://i.pinimg.com/474x/09/be/14/09be14bc67a40581bb45b751967dd5a0.jpg',
-                            'https://i.pinimg.com/236x/75/9a/0e/759a0e7be2f7933a6009dedd298f23bb.jpg',
-                            'https://i.pinimg.com/236x/31/95/01/31950148aee8feb7ac994331b9503f62.jpg',
-                            'https://i.pinimg.com/236x/6b/90/87/6b90878a333b9bebc9271480bacdda6a.jpg',
-                            'https://i.pinimg.com/236x/28/6e/9a/286e9ae0dd1b2c9d3c36d455ca8e4500.jpg',
-                            'https://i.pinimg.com/236x/84/6b/1d/846b1d6c8284437ef3abe300ee6fd1a9.jpg',
-                            'https://i.pinimg.com/236x/51/8e/08/518e08fd5b3d69371d3d5d7b2a7a2e52.jpg'
-                        
-                        ].map((image, index) => (
+                            {[
+                                'https://i.pinimg.com/236x/dd/fa/b1/ddfab1e5d640d64d908a28460141455c.jpg', 
+                                'https://i.pinimg.com/236x/13/62/25/1362258d5fa4a20660ab5ede0ce9c0ed.jpg', 
+                                'https://i.pinimg.com/564x/b1/da/ea/b1daea970a878f2dc429e3ed32a6cb31.jpg',
+                                'https://i.pinimg.com/236x/93/be/ce/93bece78e7528240f876e3b7483ce336.jpg',
+                                'https://i.pinimg.com/474x/09/be/14/09be14bc67a40581bb45b751967dd5a0.jpg',
+                                'https://i.pinimg.com/236x/75/9a/0e/759a0e7be2f7933a6009dedd298f23bb.jpg',
+                                'https://i.pinimg.com/236x/31/95/01/31950148aee8feb7ac994331b9503f62.jpg',
+                                'https://i.pinimg.com/236x/6b/90/87/6b90878a333b9bebc9271480bacdda6a.jpg',
+                                'https://i.pinimg.com/236x/28/6e/9a/286e9ae0dd1b2c9d3c36d455ca8e4500.jpg',
+                                'https://i.pinimg.com/236x/84/6b/1d/846b1d6c8284437ef3abe300ee6fd1a9.jpg',
+                                'https://i.pinimg.com/236x/51/8e/08/518e08fd5b3d69371d3d5d7b2a7a2e52.jpg'
+                            ].map((image, index) => (
                                 <img
                                     key={index}
                                     src={image}
@@ -128,7 +137,7 @@ const EditorPage = () => {
                     <div className="preview-side" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
                     <div className="preview-side" style={{ backgroundColor: noteColor, color: textColor, fontFamily: selectedFont }}>
                         <div className="note-content">
-                            {noteText}
+                            {convertNewlinesToBr(noteText)}
                         </div>
                     </div>
                 </div>
