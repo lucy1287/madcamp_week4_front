@@ -70,7 +70,7 @@ const EditorPage = () => {
                     <div className="image-selection">
                         <p>Select Background Image:</p>
                         <div className="images">
-                            {['https://assets.codepen.io/881020/dog1.jpg', 'https://assets.codepen.io/881020/dog2.jpg'].map((image, index) => (
+                            {['https://i.pinimg.com/236x/dd/fa/b1/ddfab1e5d640d64d908a28460141455c.jpg', 'https://i.pinimg.com/236x/13/62/25/1362258d5fa4a20660ab5ede0ce9c0ed.jpg', 'https://i.pinimg.com/564x/b1/da/ea/b1daea970a878f2dc429e3ed32a6cb31.jpg'].map((image, index) => (
                                 <img
                                     key={index}
                                     src={image}

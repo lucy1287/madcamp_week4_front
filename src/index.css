@@ -1,3 +1,4 @@
+/* 기본 스타일 */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +11,40 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* 폰트 정의 */
+@font-face {
+    font-family: 'Nanum GaramYeonGkot';
+    src: url('./fonts/나눔손글씨 가람연꽃.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('./fonts/Pretendard-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Nanum GangBuJangNimChe';
+    src: url('./fonts/나눔손글씨 강부장님체.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Nanum GothicNotGoding';
+    src: url('./fonts/나눔손글씨 고딕 아니고 고딩.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Nanum GomShinChe';
+    src: url('./fonts/나눔손글씨 곰신체.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Nanum KkotNaeEum';
+    src: url('./fonts/나눔손글씨 꽃내음.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Nanum GipEumBalGeum';
+    src: url('./fonts/나눔손글씨 기쁨밝음.ttf') format('truetype');
 }
