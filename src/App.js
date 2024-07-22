@@ -5,7 +5,9 @@ import HomePage from './pages/HomePage';
 import KakaoLoginPage from './pages/KakaoLoginPage';
 import AuthCallbackPage from './pages/AuthCallbackPage';
 import RollingPaperPage from './pages/RollingPaperPage';
-import EditorPage from './pages/EditorPage';  
+import EditorPage from './pages/EditorPage';
+import MainPage from './pages/MainPage';
+
 
 
 function App() {
@@ -16,7 +18,8 @@ function App() {
           <Route path="/kakaoLogin" element={<KakaoLoginPage />} />
           <Route path="/auth" element={<AuthCallbackPage />} />
           <Route path="/rollingpaper" element={<RollingPaperPage />} />
-          <Route path="/editor" element={<EditorPage />} /> 
+          <Route path="/editor" element={<EditorPage />} />
+          <Route path="/mainpage" element={<MainPage />} /> 
         </Routes>
       </Router>
   );

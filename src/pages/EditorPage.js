@@ -4,12 +4,10 @@ import '../EditorPage.css';
 const EditorPage = () => {
     const [noteText, setNoteText] = useState('');
     const [noteColor, setNoteColor] = useState('#ffffff');
-    const [textColor, setTextColor] = useState('#000000');
     const [backgroundImage, setBackgroundImage] = useState('');
     const [selectedFont, setSelectedFont] = useState('Nanum GaramYeonGkot');  // 기본 폰트 설정
 
     const postItColors = ['#e1f7d5', '#ffbdbd', '#c9c9ff', '#f1cbff', '#ffb3ba', '#ffdfba', '#ffffba', '#baffc9', '#bae1ff'];
-    const textColors = ['#000000', '#333333', '#666666', '#999999', '#FFFFFF', '#000080', '#0000FF', '#008000', '#FF0000', '#A52A2A'];
     const fonts = [
         'Nanum GaramYeonGkot', 
         'Pretendard', 
@@ -26,10 +24,6 @@ const EditorPage = () => {
 
     const handleNoteColorChange = (color) => {
         setNoteColor(color);
-    };
-
-    const handleTextColorChange = (color) => {
-        setTextColor(color);
     };
 
     const handleBackgroundImageChange = (image) => {
@@ -61,7 +55,7 @@ const EditorPage = () => {
                     className="note-text"
                     value={noteText}
                     onChange={handleNoteTextChange}
-                    style={{ backgroundColor: noteColor, color: textColor, fontFamily: selectedFont }}
+                    style={{ backgroundColor: noteColor, fontFamily: selectedFont }}
                     placeholder="Enter your note here..."
                 />
                 <div className="controls">
@@ -74,19 +68,6 @@ const EditorPage = () => {
                                     className={`color-swatch ${noteColor === color ? 'selected' : ''}`}
                                     style={{ backgroundColor: color }}
                                     onClick={() => handleNoteColorChange(color)}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                    <div className="text-color-selection">
-                        <p>Select Text Color:</p>
-                        <div className="colors">
-                            {textColors.map((color, index) => (
-                                <div
-                                    key={index}
-                                    className={`color-swatch ${textColor === color ? 'selected' : ''}`}
-                                    style={{ backgroundColor: color }}
-                                    onClick={() => handleTextColorChange(color)}
                                 />
                             ))}
                         </div>
@@ -135,7 +116,7 @@ const EditorPage = () => {
                 </div>
                 <div className="note-preview">
                     <div className="preview-side" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
-                    <div className="preview-side" style={{ backgroundColor: noteColor, color: textColor, fontFamily: selectedFont }}>
+                    <div className="preview-side" style={{ backgroundColor: noteColor, fontFamily: selectedFont }}>
                         <div className="note-content">
                             {convertNewlinesToBr(noteText)}
                         </div>
