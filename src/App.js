@@ -8,7 +8,8 @@ import RollingPaperPage from './pages/RollingPaperPage';
 import EditorPage from './pages/EditorPage';
 import MainPage from './pages/MainPage';
 import Join from './pages/Join'
-
+import GroupName from './pages/GroupName';
+import GroupEnvelope from './pages/GroupEnvelope';
 
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
           <Route path="/editor" element={<EditorPage />} />
           <Route path="/mainpage" element={<MainPage />} /> 
           <Route path="/join" element={<Join />} />
+          <Route path="/groupname" element={<GroupName />} />
+          <Route path="/groupenvelope" element={<GroupEnvelope />} />
         </Routes>
       </Router>
   );
