@@ -7,11 +7,16 @@ const RollingPaperPage = () => {
         initializeGrid();
     }, []);
 
+    const handleFlip = (e) => {
+        const item = e.currentTarget;
+        item.classList.toggle('flipped');
+    };
+
     return (
         <div className="rolling-paper-page">
             <h1>Rolling Paper Page</h1>
             <div className="grid">
-                <div className="item photo">
+                <div className="item photo" onClick={handleFlip}>
                     <div className="content">
                         <div className="front">
                             <p>Some note content.</p>
@@ -25,7 +30,7 @@ const RollingPaperPage = () => {
                     </div>
                 </div>
                 {/* Add more items here */}
-                <div className="item photo">
+                <div className="item photo" onClick={handleFlip}>
                     <div className="content">
                         <div className="front">
                             <p>Some note content.</p>
@@ -38,7 +43,7 @@ const RollingPaperPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="item photo">
+                <div className="item photo" onClick={handleFlip}>
                     <div className="content">
                         <div className="front">
                             <p>Some note content.</p>

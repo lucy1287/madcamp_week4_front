@@ -3,6 +3,11 @@
     src: url('../fonts/나눔손글씨 가람연꽃.ttf') format('truetype');
   }
 
+@font-face {
+  font-family: 'Nanum GangBuJangNimChe';
+  src: url('../fonts/나눔손글씨 강부장님체.ttf') format('truetype');
+}
+
 body {
     margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,11 +15,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  }
+  overflow: hidden; /* 기본 스크롤바 설정 */
+}
   
   .main-page {
     text-align: center;
-  }
+    overflow: hidden; /* 스크롤바 숨김 */
+}
   
   .main-header {
     display: flex;
@@ -23,6 +30,10 @@ body {
     padding: 10px 20px;
     background-color: #000;
     color: #fff;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
   }
   
   .logo {
@@ -48,7 +59,12 @@ body {
     background: none;
     border: none;
     cursor: pointer;
+    text-decoration: none;
   }
+
+  .nav-button:hover {
+  background-color: #555;
+}
   
   .dropdown {
     position: relative;
@@ -86,5 +102,31 @@ body {
   .main-content img {
     width: 100%;
     height: auto;
+    margin-top: 60px; /* 헤더 높이만큼 마진 추가 */
   }
   
+  .scroll-section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color:  #d8c8b0;
+  font-size: 1.5em;
+}
+
+.scroll-section p {
+    font-family: 'Nanum GangBuJangNimChe', sans-serif; /* p 태그에 글꼴 적용 */
+    font-size: 2em; /* 글씨 크기를 두 배로 키움 */
+  }
+
+.start-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
