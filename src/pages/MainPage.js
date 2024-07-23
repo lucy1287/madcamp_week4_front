@@ -4,9 +4,9 @@ import './MainPage.css';
 import backgroundImage from '../assets/mainpage_logo.webp'; // 이미지 경로를 맞추세요
 
 const MainPage = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const clientId = process.env.REACT_APP_JAVASCRIPT_API_KEY; // 카카오 JavaScript 키
+  const clientId = process.env.REACT_APP_JAVASCRIPT_API_KEY; // 카카오 JavaScript 키
   const redirectUri = 'http://localhost:3000/auth'; // Redirect URI
 
   const handleStartClick = () => {
@@ -43,7 +43,7 @@ const MainPage = () => {
         <div className="logo">1 Page</div>
         <nav className="main-nav">
           <a href="#">For him/her</a>
-          <a href="#">For us</a>
+          <Link to="/groupname">For us</Link>
           <Link to="/join">Join</Link>
           <div className="dropdown">
             <button className="dropbtn">My papers</button>

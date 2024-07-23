@@ -7,10 +7,10 @@ import AuthCallbackPage from './pages/AuthCallbackPage';
 import RollingPaperPage from './pages/RollingPaperPage';
 import EditorPage from './pages/EditorPage';
 import MainPage from './pages/MainPage';
-import Join from './pages/Join';
+import Join from './pages/Join'
 import MyGroupPage from './pages/MyGroupPage';
-
-
+import GroupName from './pages/GroupName';
+import GroupEnvelope from './pages/GroupEnvelope';
 
 function App() {
   return (
@@ -24,6 +24,8 @@ function App() {
           <Route path="/mainpage" element={<MainPage />} /> 
           <Route path="/join" element={<Join />} />
             <Route path="/mygrouppage" element={<MyGroupPage />} />
+          <Route path="/groupname" element={<GroupName />} />
+          <Route path="/groupenvelope" element={<GroupEnvelope />} />
         </Routes>
       </Router>
   );
