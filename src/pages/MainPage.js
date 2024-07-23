@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './MainPage.css';
 import backgroundImage from '../assets/mainpage_logo.webp'; // 이미지 경로를 맞추세요
 
@@ -44,7 +44,7 @@ const MainPage = () => {
         <nav className="main-nav">
           <a href="#">For him/her</a>
           <a href="#">For us</a>
-          <a href="#">Join</a>
+          <Link to="/join">Join</Link>
           <div className="dropdown">
             <button className="dropbtn">My papers</button>
             <div className="dropdown-content">

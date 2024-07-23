@@ -54,6 +54,10 @@ const AuthCallbackPage = () => {
                     kakao_id: userInfo.id,
                     nickname: userInfo.properties.nickname,
                     photo: userInfo.properties.profile_image
+                },{
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
                 });
 
                 // 백엔드에서 반환된 JWT 토큰 저장

@@ -13,7 +13,7 @@ const Join = () => {
     return (
         <div className="join-page">
             <header className="join-header">
-                <div className="logo">Invitation Page</div>
+                <div className="logo">1 Page</div>
                 <nav className="join-nav">
                     <a href="#">For him/her</a>
                     <a href="#">For us</a>
