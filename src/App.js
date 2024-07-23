@@ -7,7 +7,8 @@ import AuthCallbackPage from './pages/AuthCallbackPage';
 import RollingPaperPage from './pages/RollingPaperPage';
 import EditorPage from './pages/EditorPage';
 import MainPage from './pages/MainPage';
-import Join from './pages/Join'
+import Join from './pages/Join';
+import MyGroupPage from './pages/MyGroupPage';
 
 
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/editor" element={<EditorPage />} />
           <Route path="/mainpage" element={<MainPage />} /> 
           <Route path="/join" element={<Join />} />
+            <Route path="/mygrouppage" element={<MyGroupPage />} />
         </Routes>
       </Router>
   );
