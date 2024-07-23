@@ -61,6 +61,7 @@ const AuthCallbackPage = () => {
                 });
 
                 // 백엔드에서 반환된 JWT 토큰 저장
+
                 const { token, user_no } = response.data;
                 localStorage.setItem('jwtToken', token);
                 localStorage.setItem('userNo', user_no);
