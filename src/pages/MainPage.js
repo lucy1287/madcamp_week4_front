@@ -5,11 +5,16 @@ import backgroundImage from '../assets/mainpage_logo.webp'; // 이미지 경로�
 
 const MainPage = () => {
     const navigate = useNavigate();
-  const [currentSection, setCurrentSection] = useState(0);
+
+    const clientId = process.env.REACT_APP_JAVASCRIPT_API_KEY; // 카카오 JavaScript 키
+  const redirectUri = 'http://localhost:3000/auth'; // Redirect URI
 
   const handleStartClick = () => {
-    navigate('/kakaoLogin');
+    const authUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}`;
+    window.location.href = authUrl;
   };
+
+  const [currentSection, setCurrentSection] = useState(0);
 
   const handleWheel = (event) => {
     if (event.deltaY > 0) {

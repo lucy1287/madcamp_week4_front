@@ -5,7 +5,7 @@ body {
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow: visible;
+    overflow: auto;
 }
 
 code {
@@ -18,13 +18,16 @@ code {
     flex-direction: column;
     align-items: center;
     padding: 25px; /* 20px * 1.25 */
+    overflow: auto; /* 기본 스크롤바 설정 */
 }
 
 header {
     display: flex;
     justify-content: space-between;
+    align-items: center; /* 아이템을 수직 중앙에 정렬 */
     width: 100%;
-    padding: 12.5px; /* 10px * 1.25 */
+    height: 80px; /* 원하는 높이로 설정 */
+    padding: 0 20px; /* 좌우 패딩만 설정 */
     background-color: #374046;
     color: white;
 }
@@ -44,6 +47,8 @@ header {
     align-items: center;
     width: 100%;
     max-width: 750px; /* 600px * 1.25 */
+    max-height: 920px; /* 원하는 최대 높이로 설정 */
+
 }
 
 .note-text {
