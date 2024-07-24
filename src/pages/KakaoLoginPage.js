@@ -1,5 +1,6 @@
 // src/pages/KakaoLoginPage.js
 import React from 'react';
+import './KakaoLoginPage.css';
 
 const KakaoLoginPage = () => {
     const clientId = process.env.REACT_APP_JAVASCRIPT_API_KEY; // 카카오 JavaScript 키
@@ -15,12 +16,15 @@ const KakaoLoginPage = () => {
 
     return (
         <div className="login-page">
-            <h1>카카오 로그인</h1>
-            <button onClick={handleLogin}>
-                카카오 로그인
-            </button>
+            <div className="login-container">
+                <h1>카카오 로그인</h1>
+                <button onClick={handleLogin}>
+                    카카오 로그인
+                </button>
+            </div>
         </div>
     );
 };
 
 export default KakaoLoginPage;
+
