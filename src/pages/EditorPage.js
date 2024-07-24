@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Link 컴포넌트를 사용하기 위해 import
 import '../EditorPage.css';
 
 const EditorPage = () => {
@@ -45,10 +46,21 @@ const EditorPage = () => {
 
     return (
         <div className="editor-page">
-            <header>
-                <button className="back-button">←</button>
-                <h1>Editor</h1>
-                <button className="next-button">Next</button>
+            <header className="main-header">
+                <div className="logo">1 Page</div>
+                <nav className="main-nav">
+                    <a href="#">For him/her</a>
+                    <Link to="/groupname">For us</Link>
+                    <Link to="/join">Join</Link>
+                    <div className="dropdown">
+                        <button className="dropbtn">My papers</button>
+                        <div className="dropdown-content">
+                            <a href="#">Our paper</a>
+                            <a href="#">His/Her paper</a>
+                            <a href="#">For me</a>
+                        </div>
+                    </div>
+                </nav>
             </header>
             <div className="editor-container">
                 <textarea

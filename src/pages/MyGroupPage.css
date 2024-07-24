@@ -2,13 +2,85 @@
 .my-group-page {
     text-align: center;
     padding: 20px;
+    height: 100%;       /* 높이를 100%로 설정하여 전체 뷰포트를 차지하도록 함 */
+    overflow-y: auto;            /* 세로 스크롤바가 필요할 때 나타나도록 설정 */
 }
 
-.my-group-page-header {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-bottom: 1px solid #ddd;
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: 'Nanum GaramYeonGkot', sans-serif;
+  }
+  
+  .main-nav {
+    display: flex;
+    align-items: center;
+    padding-right: 200px; /* 오른쪽 여백을 추가하여 왼쪽으로 이동 */
+
+  }
+  
+  .main-nav a,
+  .dropbtn {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 10px;
+    font-size: 1.1em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .nav-button:hover {
+  background-color: #555;
 }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+  }
 
 .my-group-page-content {
     padding: 20px;

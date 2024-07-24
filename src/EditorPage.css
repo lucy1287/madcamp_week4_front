@@ -26,19 +26,10 @@ header {
     justify-content: space-between;
     align-items: center; /* 아이템을 수직 중앙에 정렬 */
     width: 100%;
-    height: 80px; /* 원하는 높이로 설정 */
+    height: 60px; /* 원하는 높이로 설정 */
     padding: 0 20px; /* 좌우 패딩만 설정 */
     background-color: #374046;
     color: white;
-}
-
-.back-button,
-.next-button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.875em; /* 1.5em * 1.25 */
-    cursor: pointer;
 }
 
 .editor-container {
@@ -47,15 +38,15 @@ header {
     align-items: center;
     width: 100%;
     max-width: 750px; /* 600px * 1.25 */
-    max-height: 920px; /* 원하는 최대 높이로 설정 */
+    max-height: 890px; /* 원하는 최대 높이로 설정 */
 
 }
 
 .note-text {
     width: 100%;
-    height: 250px; /* 200px * 1.25 */
+    height: 150px; /* 200px * 1.25 */
     padding: 12.5px; /* 10px * 1.25 */
-    margin-bottom: 25px; /* 20px * 1.25 */
+    margin-top: 80px; /* 상단 여백 추가 */
     font-size: 1.875em; /* 1.2em * 1.25 */
     border: 1px solid #ccc;
     border-radius: 12.5px; /* 10px * 1.25 */
@@ -74,7 +65,7 @@ header {
 .color-selection,
 .font-selection,
 .image-selection {
-    margin-bottom: 25px; /* 20px * 1.25 */
+    margin-bottom: 10px; /* 20px * 1.25 */
     text-align: center;
 }
 
@@ -103,7 +94,7 @@ header {
 }
 
 .font-swatch {
-    padding: 6.25px 12.5px; /* 5px 10px * 1.25 */
+    padding: 0px 12.5px; /* 5px 10px * 1.25 */
     border: 2.5px solid transparent; /* 2px * 1.25 */
     background-color: #f0f0f0;
 }
@@ -131,11 +122,12 @@ header {
     border: 1px solid #ccc;
     border-radius: 12.5px; /* 10px * 1.25 */
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.125); /* 0 4px 8px * 1.25 */
+    
 }
 
 .preview-side {
     width: 100%;
-    height: 312.5px; /* 250px * 1.25 */
+    height: 300px; /* 250px * 1.25 */
     display: flex;
     justify-content: center;
     align-items: center;
