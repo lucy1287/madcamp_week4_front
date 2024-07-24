@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // react-router-dom에서 useNavigate 훅을 사용합니다.
-import '../GroupName.css'; // 올바른 경로로 CSS 파일을 import합니다.
+import { useNavigate, Link } from 'react-router-dom';
+import '../GroupName.css';
 
 const GroupName = () => {
     const [groupName, setGroupName] = useState('');
@@ -36,18 +36,36 @@ const GroupName = () => {
     };
 
     return (
-        <div className="group-name-page">
-            <h1>Enter Group Name</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={groupName}
-                    onChange={(e) => setGroupName(e.target.value)}
-                    placeholder="Enter the group name"
-                    required
-                />
-                <button type="submit">Submit</button>
-            </form>
+        <div>
+            <header className="main-header">
+                <div className="logo">1 Page</div>
+                <nav className="main-nav">
+                    <a href="#">For him/her</a>
+                    <Link to="/groupname">For us</Link>
+                    <Link to="/join">Join</Link>
+                    <div className="dropdown">
+                        <button className="dropbtn">My papers</button>
+                        <div className="dropdown-content">
+                            <a href="#">Our paper</a>
+                            <a href="#">His/Her paper</a>
+                            <a href="#">For me</a>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <div className="group-name-page">
+                <h1>Enter Group Name</h1>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        value={groupName}
+                        onChange={(e) => setGroupName(e.target.value)}
+                        placeholder="Enter the group name"
+                        required
+                    />
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
         </div>
     );
 };
