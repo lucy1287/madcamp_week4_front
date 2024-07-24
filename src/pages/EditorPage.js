@@ -11,7 +11,6 @@ const EditorPage = () => {
     const postItColors = ['#e1f7d5', '#ffbdbd', '#c9c9ff', '#f1cbff', '#ffb3ba', '#ffdfba', '#ffffba', '#baffc9', '#bae1ff'];
     const fonts = [
         'Nanum GaramYeonGkot', 
-        'Pretendard', 
         'Nanum GangBuJangNimChe', 
         'Nanum GothicNotGoding', 
         'Nanum GomShinChe', 

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './MyGroupPage.css'; // 스타일 파일을 import 합니다
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './MyGroupPage.css'; // 스타일 파일을 import 합니다
 import folder1 from '../assets/FolderImages/Folder1.png';
 import folder2 from '../assets/FolderImages/Folder2.png';
@@ -12,6 +13,7 @@ import folder5 from '../assets/FolderImages/Folder5.png';
 import folder6 from '../assets/FolderImages/Folder6.png';
 import folder7 from '../assets/FolderImages/Folder7.png';
 import folder8 from '../assets/FolderImages/Folder8.png';
+
 
 const MyGroupPage = () => {
     const [groups, setGroups] = useState([]);
@@ -59,6 +61,8 @@ const MyGroupPage = () => {
             </header>
             <main className="my-group-page-content">
                 <div className="group-list">
+
+
                     {groups.length === 0 ? (
                         <p>No groups found</p>
                     ) : (
