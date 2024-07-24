@@ -63,14 +63,14 @@ const MyGroupPage = () => {
                         <p>No groups found</p>
                     ) : (
                         groups.map((group) => (
-                            <div key={group.group_no} className="group-card">
+                            <Link to={`/paperlistpage/${group.group_no}`} key={group.group_no} className="group-card">
                                 <img
                                     src={images[Math.floor(Math.random() * images.length)]} // 랜덤 이미지 선택
                                     alt={group.title}
                                     className="group-image"
                                 />
                                 <h3 className="group-name">{group.title}</h3>
-                            </div>
+                            </Link>
                         ))
                     )}
                 </div>

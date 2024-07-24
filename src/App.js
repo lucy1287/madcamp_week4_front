@@ -11,6 +11,7 @@ import Join from './pages/Join'
 import MyGroupPage from './pages/MyGroupPage';
 import GroupName from './pages/GroupName';
 import GroupEnvelope from './pages/GroupEnvelope';
+import PaperListPage from './pages/PaperListPage';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/mygrouppage" element={<MyGroupPage />} />
           <Route path="/groupname" element={<GroupName />} />
           <Route path="/groupenvelope" element={<GroupEnvelope />} />
+            <Route path="/paperlistpage/:group_no" element={<PaperListPage />} />
         </Routes>
       </Router>
   );

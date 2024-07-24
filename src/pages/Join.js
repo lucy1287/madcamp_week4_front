@@ -1,13 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './Join.css';
 import backgroundImage from '../assets/invitation_envelope.webp'; // 이미지를 적절한 경로로 변경하세요
 
 const Join = () => {
-    const handleSubmit = (event) => {
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const code = event.target.invitationCode.value;
-        // 초대 코드 처리 로직을 여기에 추가하세요
-        console.log('Invitation Code:', code);
+        console.log(code);
+        const userNo = localStorage.getItem('userNo');
+
+        try {
+            // POST 요청을 보내서 group_no를 받아옵니다
+            const response = await axios.post(`http://localhost:5000/group/join/${userNo}`, { invite_code: code });
+            console.log(response);
+            const groupNo = response.data.group_no;
+
+            // PaperListPage로 리디렉션합니다
+            navigate(`/paperlistpage/${groupNo}`);
+        } catch (error) {
+            // 오류가 발생했을 경우 처리합니다
+            console.error('초대 코드 처리 중 오류 발생:', error);
+            setError('초대 코드 처리 중 오류가 발생했습니다.');
+        }
     };
 
     return (
@@ -32,9 +51,16 @@ const Join = () => {
                 <div className="background-image-container">
                     <img src={backgroundImage} alt="Invitation Envelope Background" className="background-image" />
                     <form className="invitation-form" onSubmit={handleSubmit}>
-                        <input type="text" name="invitationCode" placeholder="Enter your invitation code" className="invitation-input" />
+                        <input
+                            type="text"
+                            name="invitationCode"
+                            placeholder="Enter your invitation code"
+                            className="invitation-input"
+                            required
+                        />
                         <button type="submit" className="submit-button">Submit</button>
                     </form>
+                    {error && <div className="error-message">{error}</div>}
                 </div>
             </div>
         </div>
