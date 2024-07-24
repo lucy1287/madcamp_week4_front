@@ -13,11 +13,22 @@ const GroupEnvelope = () => {
     const [group, setGroup] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [nickname, setNickname] = useState('');   
 
     useEffect(() => {
         const fetchGroup = async () => {
             const userNo = localStorage.getItem('userNo');
             const jwtToken = localStorage.getItem('jwtToken');
+
+            // Local Storage에서 사용자 정보 가져오기
+            const userInfo = JSON.parse(localStorage.getItem('user'));
+            if (userInfo && userInfo.properties && userInfo.properties.nickname) {
+                setNickname(userInfo.properties.nickname);
+            } else {
+                setError('User information not found in local storage');
+                setLoading(false);
+                return;
+            }
 
             if (!jwtToken) {
                 setError('JWT token is missing. Please login again.');
@@ -38,7 +49,8 @@ const GroupEnvelope = () => {
                     const groupsData = await response.json();
                     console.log(groupsData);
                     const validGroups = groupsData.filter(g => g !== null); // null 값 필터링
-                    const group = validGroups.find(g => g.group_no === parseInt(groupNum));                    setGroup(group);
+                    const group = validGroups.find(g => g.group_no === parseInt(groupNum));                    
+                    setGroup(group);
                 } else {
                     setError('Failed to fetch group data');
                 }
@@ -92,7 +104,7 @@ const GroupEnvelope = () => {
                         alt={group.title}
                         className="group-image"
                     />
-                    <h3 className="group-name">{group.title}</h3>
+                    <h3 className="group-name">{nickname}</h3> {/* 사용자 닉네임 표시 */}
                 </div>
             </main>
         </div>
