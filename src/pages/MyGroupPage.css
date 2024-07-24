@@ -28,7 +28,7 @@
   .main-nav {
     display: flex;
     align-items: center;
-    padding-right: 200px; /* 오른쪽 여백을 추가하여 왼쪽으로 이동 */
+    padding-right: 50px; /* 오른쪽 여백을 추가하여 왼쪽으로 이동 */
 
   }
   

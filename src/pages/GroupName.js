@@ -26,8 +26,35 @@ const GroupName = () => {
         });
 
         if (response.ok) {
-            // 성공적으로 그룹이 생성되면 GroupEnvelope 페이지로 이동합니다.
-            navigate('/GroupEnvelope');
+            // 그룹 생성 후 사용자가 속한 그룹을 조회합니다.
+            const groupsResponse = await fetch(`http://localhost:5000/group/${userNo}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('jwtToken')}` // JWT 토큰을 헤더에 포함합니다.
+                }
+            });
+
+            if (groupsResponse.ok) {
+                const groupsData = await groupsResponse.json();
+                console.log(groupsData);
+                
+                // 생성된 그룹의 GROUP_NO를 찾아 리디렉션합니다.
+
+                // null 값을 필터링하여 그룹 리스트를 가져옵니다.
+                const groups = groupsData.filter(group => group !== null);
+
+                // 가장 최근에 생성된 그룹을 선택합니다.
+                const newGroup = groups[groups.length - 1];
+                if (newGroup) {
+                    const newGroupNum = newGroup.group_no;
+                    navigate(`/groupenvelope/${newGroupNum}`);
+                } else {
+                    console.error('Newly created group not found in user groups');
+                }
+            } else {
+                console.error('Failed to fetch user groups');
+            }
         } else {
             // 오류가 발생한 경우 적절한 처리를 합니다.
             const errorData = await response.json();
