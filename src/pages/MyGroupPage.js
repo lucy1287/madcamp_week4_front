@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import './MyGroupPage.css'; // 스타일 파일을 import 합니다
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import './MyGroupPage.css'; // 스타일 파일을 import 합니다
 import folder1 from '../assets/FolderImages/Folder1.png';
 import folder2 from '../assets/FolderImages/Folder2.png';
@@ -67,14 +66,14 @@ const MyGroupPage = () => {
                         <p>No groups found</p>
                     ) : (
                         groups.map((group) => (
-                            <div key={group.group_no} className="group-card">
+                            <Link to={`/paperlistpage/${group.group_no}`} key={group.group_no} className="group-card">
                                 <img
                                     src={images[Math.floor(Math.random() * images.length)]} // 랜덤 이미지 선택
                                     alt={group.title}
                                     className="group-image"
                                 />
                                 <h3 className="group-name">{group.title}</h3>
-                            </div>
+                            </Link>
                         ))
                     )}
                 </div>

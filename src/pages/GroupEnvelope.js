@@ -7,76 +7,46 @@ import envelope3 from '../assets/EnvelopeImages/envelope3.png';
 import envelope4 from '../assets/EnvelopeImages/envelope4.png';
 import envelope5 from '../assets/EnvelopeImages/envelope5.png';
 import envelope6 from '../assets/EnvelopeImages/envelope6.png';
+import axios from 'axios';
 
 const GroupEnvelope = () => {
-    const { groupNum } = useParams(); // URL 파라미터에서 groupNum을 가져옵니다.
-    const [group, setGroup] = useState(null);
+    const { group_no } = useParams(); // URL 파라미터에서 group_no을 가져옵니다.
+    const [papers, setPapers] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
-    const [nickname, setNickname] = useState('');   
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchGroup = async () => {
-            const userNo = localStorage.getItem('userNo');
-            const jwtToken = localStorage.getItem('jwtToken');
-
-            // Local Storage에서 사용자 정보 가져오기
-            const userInfo = JSON.parse(localStorage.getItem('user'));
-            if (userInfo && userInfo.properties && userInfo.properties.nickname) {
-                setNickname(userInfo.properties.nickname);
-            } else {
-                setError('User information not found in local storage');
-                setLoading(false);
-                return;
-            }
-
-            if (!jwtToken) {
-                setError('JWT token is missing. Please login again.');
-                setLoading(false);
-                return;
-            }
-
+        const fetchPapers = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/group/${userNo}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${jwtToken}` // JWT 토큰을 헤더에 포함합니다.
-                    }
-                });
-
-                if (response.ok) {
-                    const groupsData = await response.json();
-                    console.log(groupsData);
-                    const validGroups = groupsData.filter(g => g !== null); // null 값 필터링
-                    const group = validGroups.find(g => g.group_no === parseInt(groupNum));                    
-                    setGroup(group);
-                } else {
-                    setError('Failed to fetch group data');
-                }
+                console.log('Fetching papers for group_no:', group_no);
+                const response = await axios.get(`http://localhost:5000/paper?group_no=${group_no}`);
+                setPapers(response.data);
+                setLoading(false);
             } catch (err) {
-                setError(`Error: ${err.message}`);
-            } finally {
+                setError(err); // 에러 객체 전체를 상태에 설정
                 setLoading(false);
             }
         };
 
-        fetchGroup();
-    }, [groupNum]);
+        if (group_no) { // group_no가 있을 때만 API 호출
+            fetchPapers();
+        }
+    }, [group_no]);
 
     // 이미지 배열
     const images = [envelope1, envelope2, envelope3, envelope4, envelope5, envelope6];
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div>로딩 중...</div>;
     }
 
     if (error) {
-        return <div>{error}</div>;
+        // 에러 메시지를 추출하여 사용자에게 보여줍니다
+        return <div>에러 발생: {error.message}</div>;
     }
 
-    if (!group) {
-        return <div>Group not found</div>; // 그룹을 찾지 못한 경우
+    if (!papers || papers.length === 0) {
+        return <div>페이퍼가 없습니다</div>; // 페이퍼를 찾을 수 없는 경우
     }
 
     return (
@@ -97,14 +67,20 @@ const GroupEnvelope = () => {
                     </div>
                 </nav>
             </header>
-            <main className="my-group-page-content">
-                <div className="group-card">
-                    <img
-                        src={images[Math.floor(Math.random() * images.length)]} // 랜덤 이미지 선택
-                        alt={group.title}
-                        className="group-image"
-                    />
-                    <h3 className="group-name">{nickname}</h3> {/* 사용자 닉네임 표시 */}
+            <main className="paper-list-page-content">
+                <div className="paper-list">
+                    {papers.map((paper) => (
+                        <Link to={`/rollingpaper/${paper.paper_no}`} key={paper.paper_no} className="group-card">
+                            <div key={paper.paper_no} className="paper-card">
+                                <img
+                                    src={images[Math.floor(Math.random() * images.length)]} // 랜덤 이미지 선택
+                                    alt={paper.title}
+                                    className="paper-image"
+                                />
+                                <h3 className="paper-name">{paper.title}</h3>
+                            </div>
+                        </Link>
+                    ))}
                 </div>
             </main>
         </div>

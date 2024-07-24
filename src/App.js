@@ -25,7 +25,7 @@ function App() {
           <Route path="/join" element={<Join />} />
             <Route path="/mygrouppage" element={<MyGroupPage />} />
           <Route path="/groupname" element={<GroupName />} />
-          <Route path="/groupenvelope/:groupNum" element={<GroupEnvelope />} />
+          <Route path="/groupenvelope/:group_no" element={<GroupEnvelope />} />
           </Routes>
       </Router>
   );
