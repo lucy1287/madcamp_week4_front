@@ -1,10 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../GroupEnvelope.css'; // CSS 파일을 올바른 경로로 import합니다.
+import '../GroupEnvelope.css'; // 스타일 파일을 import 합니다
+import envelope1 from '../assets/EnvelopeImages/envelope1.png';
+import envelope2 from '../assets/EnvelopeImages/envelope2.png';
+import envelope3 from '../assets/EnvelopeImages/envelope3.png';
+import envelope4 from '../assets/EnvelopeImages/envelope4.png';
+import envelope5 from '../assets/EnvelopeImages/envelope5.png';
+import envelope6 from '../assets/EnvelopeImages/envelope6.png';
+
+
+const groups = [
+    { id: 1, name: 'Envelope One' },
+    { id: 2, name: 'Envelope Two' },
+    { id: 3, name: 'Envelope Three' },
+    { id: 4, name: 'Envelope Four' },
+    { id: 5, name: 'Envelope Five' },
+    { id: 6, name: 'Envelope Six' },
+    { id: 7, name: 'Envelope Seven' },
+    { id: 8, name: 'Envelope Eight' },
+    { id: 9, name: 'Envelope Nine' },
+];
 
 const GroupEnvelope = () => {
+    // 이미지 배열
+    const images = [envelope1, envelope2, envelope3, envelope4, envelope5, envelope6];
+
     return (
-        <div>
+        <div className="my-group-page">
             <header className="main-header">
                 <div className="logo">1 Page</div>
                 <nav className="main-nav">
@@ -21,10 +43,20 @@ const GroupEnvelope = () => {
                     </div>
                 </nav>
             </header>
-            <div className="group-envelope-page">
-                <h1>Group Envelope</h1>
-                {/* 여기에 필요한 추가 콘텐츠를 작성할 수 있습니다. */}
-            </div>
+            <main className="my-group-page-content">
+                <div className="group-list">
+                    {groups.map((group) => (
+                        <div key={group.id} className="group-card">
+                            <img
+                                src={images[Math.floor(Math.random() * images.length)]} // 랜덤 이미지 선택
+                                alt={group.name}
+                                className="group-image"
+                            />
+                            <h3 className="group-name">{group.name}</h3>
+                        </div>
+                    ))}
+                </div>
+            </main>
         </div>
     );
 };
