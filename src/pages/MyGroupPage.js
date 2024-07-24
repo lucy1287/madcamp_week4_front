@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import './MyGroupPage.css'; // 스타일 파일을 import 합니다
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import './MyGroupPage.css'; // 스타일 파일을 import 합니다
 import folder1 from '../assets/FolderImages/Folder1.png';
 import folder2 from '../assets/FolderImages/Folder2.png';

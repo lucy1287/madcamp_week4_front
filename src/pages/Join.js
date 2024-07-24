@@ -18,10 +18,10 @@ const Join = () => {
             // POST 요청을 보내서 group_no를 받아옵니다
             const response = await axios.post(`http://localhost:5000/group/join/${userNo}`, { invite_code: code });
             console.log(response);
-            const groupNo = response.data.group_no;
+            const group_no = response.data.group_no;
 
             // PaperListPage로 리디렉션합니다
-            navigate(`/paperlistpage/${groupNo}`);
+            navigate(`/groupenvelope/${group_no}`);
         } catch (error) {
             // 오류가 발생했을 경우 처리합니다
             console.error('초대 코드 처리 중 오류 발생:', error);
