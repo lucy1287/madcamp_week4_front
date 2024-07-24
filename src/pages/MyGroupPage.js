@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './MyGroupPage.css'; // 스타일 파일을 import 합니다
 import folder1 from '../assets/FolderImages/Folder1.png';
 import folder2 from '../assets/FolderImages/Folder2.png';
@@ -12,17 +13,33 @@ import folder8 from '../assets/FolderImages/Folder8.png';
 
 const groups = [
     { id: 1, name: 'Group One' },
-    { id: 2, name: 'Group Two' },
-    { id: 3, name: 'Group Three'},
-    { id: 4, name: 'Group Four' },
-    { id: 5, name: 'Group Five' },
-    { id: 6, name: 'Group Six' },
-    { id: 7, name: 'Group Seven' },
-    { id: 8, name: 'Group Eight' },
-    { id: 9, name: 'Group Nine' },
+
 ];
 
+
 const MyGroupPage = () => {
+    const [groups, setGroups] = useState([]);
+
+    useEffect(() => {
+        const fetchGroups = async () => {
+            const user_no = localStorage.getItem('userNo');
+            if (!user_no) {
+                console.error('User number not found in local storage');
+                return;
+            }
+            try {
+                const response = await axios.get(`http://localhost:5000/group/${user_no}`);
+                console.log(response.data);
+                const validGroups = response.data.filter(group => group !== null); // null 값 필터링
+                setGroups(validGroups);
+            } catch (error) {
+                console.error('Error fetching groups:', error);
+            }
+        };
+
+        fetchGroups();
+    }, []);
+
     // 이미지 배열
     const images = [folder1, folder2, folder3, folder4, folder5, folder6, folder7, folder8];
 
@@ -47,13 +64,13 @@ const MyGroupPage = () => {
             <main className="my-group-page-content">
                 <div className="group-list">
                     {groups.map((group) => (
-                        <div key={group.id} className="group-card">
+                        <div key={group.group_no} className="group-card">
                             <img
                                 src={images[Math.floor(Math.random() * images.length)]} // 랜덤 이미지 선택
-                                alt={group.name}
+                                alt={group.title}
                                 className="group-image"
                             />
-                            <h3 className="group-name">{group.name}</h3>
+                            <h3 className="group-name">{group.title}</h3>
                         </div>
                     ))}
                 </div>
