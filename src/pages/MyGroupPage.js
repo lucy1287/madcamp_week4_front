@@ -1,4 +1,7 @@
-import React from 'react';
+// src/pages/MyGroupPage.js
+import React, { useState, useEffect } from 'react';
+import './MyGroupPage.css'; // 스타일 파일을 import 합니다
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './MyGroupPage.css'; // 스타일 파일을 import 합니다
 import folder1 from '../assets/FolderImages/Folder1.png';
@@ -10,21 +13,31 @@ import folder6 from '../assets/FolderImages/Folder6.png';
 import folder7 from '../assets/FolderImages/Folder7.png';
 import folder8 from '../assets/FolderImages/Folder8.png';
 
-const groups = [
-    { id: 1, name: 'Group One' },
-    { id: 2, name: 'Group Two' },
-    { id: 3, name: 'Group Three'},
-    { id: 4, name: 'Group Four' },
-    { id: 5, name: 'Group Five' },
-    { id: 6, name: 'Group Six' },
-    { id: 7, name: 'Group Seven' },
-    { id: 8, name: 'Group Eight' },
-    { id: 9, name: 'Group Nine' },
-];
-
 const MyGroupPage = () => {
+    const [groups, setGroups] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     // 이미지 배열
     const images = [folder1, folder2, folder3, folder4, folder5, folder6, folder7, folder8];
+
+    useEffect(() => {
+        const fetchGroups = async () => {
+            try {
+                const user_no = localStorage.getItem('userNo');
+                const response = await axios.get(`http://localhost:5000/group/${user_no}`);
+                setGroups(response.data);
+                setLoading(false);
+            } catch (err) {
+                setError(err);
+                setLoading(false);
+            }
+        };
+
+        fetchGroups();
+    }, []); // 빈 배열을 의존성으로 전달하여 컴포넌트가 처음 렌더링될 때만 호출됨
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
 
     return (
         <div className="my-group-page">
@@ -46,16 +59,20 @@ const MyGroupPage = () => {
             </header>
             <main className="my-group-page-content">
                 <div className="group-list">
-                    {groups.map((group) => (
-                        <div key={group.id} className="group-card">
-                            <img
-                                src={images[Math.floor(Math.random() * images.length)]} // 랜덤 이미지 선택
-                                alt={group.name}
-                                className="group-image"
-                            />
-                            <h3 className="group-name">{group.name}</h3>
-                        </div>
-                    ))}
+                    {groups.length === 0 ? (
+                        <p>No groups found</p>
+                    ) : (
+                        groups.map((group) => (
+                            <div key={group.group_no} className="group-card">
+                                <img
+                                    src={images[Math.floor(Math.random() * images.length)]} // 랜덤 이미지 선택
+                                    alt={group.title}
+                                    className="group-image"
+                                />
+                                <h3 className="group-name">{group.title}</h3>
+                            </div>
+                        ))
+                    )}
                 </div>
             </main>
         </div>
