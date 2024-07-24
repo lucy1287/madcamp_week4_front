@@ -4,61 +4,73 @@ import '../GroupName.css';
 
 const GroupName = () => {
     const [groupName, setGroupName] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Group Name:', groupName);
+        setLoading(true);
+        setError('');
 
         const userNo = localStorage.getItem('userNo'); // 로컬 스토리지에서 userNo를 가져옵니다.
+        const jwtToken = localStorage.getItem('jwtToken');
 
-        // 그룹 생성을 위한 POST 요청을 보냅니다.
-        const response = await fetch(`http://localhost:5000/group/create/${userNo}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('jwtToken')}` // JWT 토큰을 헤더에 포함합니다.
-            },
-            body: JSON.stringify({
-                title: groupName,
-                cardinality_yn: 'Y',
-            }),
-        });
+        if (!jwtToken) {
+            setLoading(false);
+            setError('JWT token is missing. Please login again.');
+            return;
+        }
 
-        if (response.ok) {
-            // 그룹 생성 후 사용자가 속한 그룹을 조회합니다.
-            const groupsResponse = await fetch(`http://localhost:5000/group/${userNo}`, {
-                method: 'GET',
+        try {
+            const response = await fetch(`http://localhost:5000/group/create/${userNo}`, {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('jwtToken')}` // JWT 토큰을 헤더에 포함합니다.
-                }
+                    'Authorization': `Bearer ${jwtToken}` // JWT 토큰을 헤더에 포함합니다.
+                },
+                body: JSON.stringify({
+                    title: groupName,
+                    cardinality_yn: 'Y',
+                }),
             });
 
-            if (groupsResponse.ok) {
-                const groupsData = await groupsResponse.json();
-                console.log(groupsData);
-                
-                // 생성된 그룹의 GROUP_NO를 찾아 리디렉션합니다.
+            if (response.ok) {
+                // 그룹 생성 후 사용자가 속한 그룹을 조회합니다.
+                const groupsResponse = await fetch(`http://localhost:5000/group/${userNo}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${jwtToken}` // JWT 토큰을 헤더에 포함합니다.
+                    }
+                });
 
-                // null 값을 필터링하여 그룹 리스트를 가져옵니다.
-                const groups = groupsData.filter(group => group !== null);
+                if (groupsResponse.ok) {
+                    const groupsData = await groupsResponse.json();
 
-                // 가장 최근에 생성된 그룹을 선택합니다.
-                const newGroup = groups[groups.length - 1];
-                if (newGroup) {
-                    const newGroupNum = newGroup.group_no;
-                    navigate(`/groupenvelope/${newGroupNum}`);
+                    // null 값을 필터링하여 그룹 리스트를 가져옵니다.
+                    const groups = groupsData.filter(group => group !== null);
+
+                    // 가장 최근에 생성된 그룹을 선택합니다.
+                    const newGroup = groups[groups.length - 1];
+                    if (newGroup) {
+                        const newGroupNum = newGroup.group_no;
+                        navigate(`/groupenvelope/${newGroupNum}`);
+                    } else {
+                        setError('Newly created group not found in user groups');
+                    }
                 } else {
-                    console.error('Newly created group not found in user groups');
+                    setError('Failed to fetch user groups');
                 }
             } else {
-                console.error('Failed to fetch user groups');
+                // 오류가 발생한 경우 적절한 처리를 합니다.
+                const errorData = await response.json();
+                setError(`Failed to create group: ${errorData.message || 'Unknown error'}`);
             }
-        } else {
-            // 오류가 발생한 경우 적절한 처리를 합니다.
-            const errorData = await response.json();
-            console.error('Failed to create group:', errorData);
+        } catch (err) {
+            setError(`Error: ${err.message}`);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -90,8 +102,11 @@ const GroupName = () => {
                         placeholder="Enter the group name"
                         required
                     />
-                    <button type="submit">Submit</button>
+                    <button type="submit" disabled={loading}>
+                        {loading ? 'Loading...' : 'Submit'}
+                    </button>
                 </form>
+                {error && <p className="error">{error}</p>}
             </div>
         </div>
     );
