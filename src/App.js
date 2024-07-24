@@ -19,11 +19,11 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/kakaoLogin" element={<KakaoLoginPage />} />
           <Route path="/auth" element={<AuthCallbackPage />} />
-          <Route path="/rollingpaper" element={<RollingPaperPage />} />
+          <Route path="/rollingpaper/:paper_no" element={<RollingPaperPage />} />
           <Route path="/editor" element={<EditorPage />} />
           <Route path="/mainpage" element={<MainPage />} /> 
           <Route path="/join" element={<Join />} />
-            <Route path="/mygrouppage" element={<MyGroupPage />} />
+          <Route path="/mygrouppage" element={<MyGroupPage />} />
           <Route path="/groupname" element={<GroupName />} />
           <Route path="/groupenvelope/:group_no" element={<GroupEnvelope />} />
           </Routes>

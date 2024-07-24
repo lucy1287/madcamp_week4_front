@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { initializeGrid } from './RollingPaper';
 import '../RollingPaper.css'; // 올바른 경로로 CSS 파일을 import합니다.
 
 const RollingPaperPage = () => {
+    const navigate = useNavigate();
+
     useEffect(() => {
         initializeGrid();
     }, []);
@@ -10,6 +13,10 @@ const RollingPaperPage = () => {
     const handleFlip = (e) => {
         const item = e.currentTarget;
         item.classList.toggle('flipped');
+    };
+
+    const handleWriteButtonClick = () => {
+        navigate('/editor');
     };
 
     return (
@@ -57,6 +64,7 @@ const RollingPaperPage = () => {
                     </div>
                 </div>
             </div>
+            <button className="write-button" onClick={handleWriteButtonClick}>글 작성하기</button>           
         </div>
     );
 };
