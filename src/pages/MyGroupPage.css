@@ -12,6 +12,7 @@
 
 .my-group-page-content {
     padding: 20px;
+    margin-top: 60px; /* 여기를 추가 또는 조정하세요 */
 }
 
 .group-list {
@@ -20,12 +21,12 @@
     padding: 20px;
     gap: 20px;
     scroll-snap-type: x mandatory;
+    flex-wrap: wrap;
 }
 
 .group-card {
     flex: 0 0 auto;
     width: 200px;
-    border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
     text-align: center;
@@ -39,7 +40,7 @@
 
 .group-image {
     width: 100%;
-    height: 100%;
+    height: 60%;
     object-fit: cover;
 }
 
@@ -47,4 +48,6 @@
     padding: 10px;
     font-size: 1.2em;
     color: #333;
+    word-break: break-word;
+    
 }
