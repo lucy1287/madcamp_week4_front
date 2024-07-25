@@ -55,6 +55,7 @@ const GroupName = () => {
                     const newGroup = groups[groups.length - 1];
                     if (newGroup) {
                         const newGroupNum = newGroup.group_no;
+                        alert("초대코드 : " + newGroup.invite_code);
                         navigate(`/groupenvelope/${newGroupNum}`);
                     } else {
                         setError('Newly created group not found in user groups');
