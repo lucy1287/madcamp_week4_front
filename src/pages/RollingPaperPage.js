@@ -46,9 +46,13 @@ const RollingPaperPage = () => {
             </button>
             <div className="grid">
                 {letters.map((letter, index) => (
-                    <div key={index} className="item photo" onClick={handleFlip}>
+                    <div
+                        key={index}
+                        className="item photo"
+                        onClick={handleFlip}>
                         <div className="content">
-                            <div className="front">
+                            <div className="front"
+                                 style={{ backgroundColor: letter.letterColor.color_hex_code }}>
                                 <p>{letter.content}</p>
                             </div>
                             <div className="back">
