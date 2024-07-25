@@ -20,7 +20,7 @@ function App() {
           <Route path="/kakaoLogin" element={<KakaoLoginPage />} />
           <Route path="/auth" element={<AuthCallbackPage />} />
           <Route path="/rollingpaper/:paper_no" element={<RollingPaperPage />} />
-          <Route path="/editor" element={<EditorPage />} />
+          <Route path="/editor/:paper_no" element={<EditorPage />} />
           <Route path="/mainpage" element={<MainPage />} /> 
           <Route path="/join" element={<Join />} />
           <Route path="/mygrouppage" element={<MyGroupPage />} />
