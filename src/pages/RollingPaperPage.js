@@ -6,7 +6,16 @@ import '../RollingPaper.css';
 const RollingPaperPage = () => {
     const { paper_no } = useParams(); // URL에서 paper_no 추출
     const [letters, setLetters] = useState([]); // 편지 데이터를 저장할 상태 변수
+    const [nickname, setNickname] = useState(''); // 닉네임을 저장할 상태 변수 
     const navigate = useNavigate(); // 페이지 이동을 위한 navigate 훅 사용
+
+    useEffect(() => {
+        // localStorage에서 유저 정보 가져오기
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user && user.properties && user.properties.nickname) {
+            setNickname(user.properties.nickname); // 닉네임 상태 업데이트
+        }
+    }, []);
 
     useEffect(() => {
         initializeGrid(); // 필요시 그리드 초기화
@@ -40,7 +49,7 @@ const RollingPaperPage = () => {
 
     return (
         <div className="rolling-paper-page">
-            <h1>롤링 페이퍼 페이지</h1>
+            <h1>{nickname}의 롤링 페이퍼</h1>
             <button onClick={handleCreateLetter} className="create-letter-button">
                 글 작성하기
             </button>
