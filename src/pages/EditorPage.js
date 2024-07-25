@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Link 컴포넌트를 사용하기 위해 import
+import {Link, useParams} from 'react-router-dom'; // Link 컴포넌트를 사용하기 위해 import
 import '../EditorPage.css';
 
 const EditorPage = () => {
+    const { paper_no } = useParams();
     const [noteText, setNoteText] = useState('');
     const [noteColor, setNoteColor] = useState('#ffffff');
     const [backgroundImage, setBackgroundImage] = useState('');
@@ -10,11 +11,11 @@ const EditorPage = () => {
 
     const postItColors = ['#e1f7d5', '#ffbdbd', '#c9c9ff', '#f1cbff', '#ffb3ba', '#ffdfba', '#ffffba', '#baffc9', '#bae1ff'];
     const fonts = [
-        'Nanum GaramYeonGkot', 
-        'Nanum GangBuJangNimChe', 
-        'Nanum GothicNotGoding', 
-        'Nanum GomShinChe', 
-        'Nanum KkotNaeEum', 
+        'Nanum GaramYeonGkot',
+        'Nanum GangBuJangNimChe',
+        'Nanum GothicNotGoding',
+        'Nanum GomShinChe',
+        'Nanum KkotNaeEum',
         'Nanum GipEumBalGeum'
     ];  // 사용할 폰트 리스트
 
@@ -41,6 +42,35 @@ const EditorPage = () => {
                 <br />
             </React.Fragment>
         ));
+    };
+
+    const handleSubmit = async () => {
+        const user_no = localStorage.getItem("userNo");  // 실제 사용자의 번호로 변경해야 함
+        console.log(user_no);
+        const response = await fetch(`http://localhost:5000/letter/create/${user_no}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                paper_no: paper_no,
+                content: noteText,
+                background_no: 3,  // 실제 데이터에 맞게 조정
+                color_no: postItColors.indexOf(noteColor) + 1,  // 색상 인덱스를 1부터 시작하도록 조정
+                font_no: fonts.indexOf(selectedFont) + 1  // 폰트 인덱스를 1부터 시작하도록 조정
+            }),
+        });
+
+        if (response.ok) {
+            alert('Letter successfully submitted!');
+            // Optional: Clear the form or redirect the user
+            setNoteText('');
+            setNoteColor('#ffffff');
+            setBackgroundImage('');
+            setSelectedFont('Nanum GaramYeonGkot');
+        } else {
+            alert('Failed to submit note.');
+        }
     };
 
     return (
@@ -102,8 +132,8 @@ const EditorPage = () => {
                         <p>Select Background Image:</p>
                         <div className="images">
                             {[
-                                'https://i.pinimg.com/236x/dd/fa/b1/ddfab1e5d640d64d908a28460141455c.jpg', 
-                                'https://i.pinimg.com/236x/13/62/25/1362258d5fa4a20660ab5ede0ce9c0ed.jpg', 
+                                'https://i.pinimg.com/236x/dd/fa/b1/ddfab1e5d640d64d908a28460141455c.jpg',
+                                'https://i.pinimg.com/236x/13/62/25/1362258d5fa4a20660ab5ede0ce9c0ed.jpg',
                                 'https://i.pinimg.com/564x/b1/da/ea/b1daea970a878f2dc429e3ed32a6cb31.jpg',
                                 'https://i.pinimg.com/236x/93/be/ce/93bece78e7528240f876e3b7483ce336.jpg',
                                 'https://i.pinimg.com/474x/09/be/14/09be14bc67a40581bb45b751967dd5a0.jpg',
@@ -133,6 +163,9 @@ const EditorPage = () => {
                         </div>
                     </div>
                 </div>
+                <button onClick={handleSubmit} className="submit-button">
+                    Submit Note
+                </button>
             </div>
         </div>
     );
