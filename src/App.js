@@ -23,7 +23,7 @@ function App() {
           <Route path="/editor/:paper_no" element={<EditorPage />} />
           <Route path="/mainpage" element={<MainPage />} /> 
           <Route path="/join" element={<Join />} />
-            <Route path="/mygrouppage" element={<MyGroupPage />} />
+          <Route path="/mygrouppage" element={<MyGroupPage />} />
           <Route path="/groupname" element={<GroupName />} />
           <Route path="/groupenvelope/:group_no" element={<GroupEnvelope />} />
           </Routes>
