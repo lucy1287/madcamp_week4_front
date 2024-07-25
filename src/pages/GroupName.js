@@ -78,19 +78,13 @@ const GroupName = () => {
     return (
         <div>
             <header className="main-header">
-                <div className="logo">1 Page</div>
+                <Link to="/" className="logo-link">
+                    <div className="logo">1 Page</div>
+                </Link>
                 <nav className="main-nav">
-                    <a href="#">For him/her</a>
                     <Link to="/groupname">For us</Link>
                     <Link to="/join">Join</Link>
-                    <div className="dropdown">
-                        <button className="dropbtn">My papers</button>
-                        <div className="dropdown-content">
-                            <a href="/mygrouppage">Our paper</a>
-                            <a href="#">His/Her paper</a>
-                            <a href="#">For me</a>
-                        </div>
-                    </div>
+                    <Link to="/mygrouppage">Our papers</Link>
                 </nav>
             </header>
             <div className="group-name-page">

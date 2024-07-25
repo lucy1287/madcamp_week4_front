@@ -55,10 +55,16 @@ button:hover {
     z-index: 1000;
 }
 
-.logo {
+.logo-link {
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+  .logo {
     font-size: 1.5em;
     font-weight: bold;
-}
+    font-family: 'Nanum GaramYeonGkot', sans-serif;
+    color:#fff;
+  }
 
 .main-nav {
     display: flex;

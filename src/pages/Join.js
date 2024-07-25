@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Join.css';
 import backgroundImage from '../assets/invitation_envelope.webp'; // 이미지를 적절한 경로로 변경하세요
 
@@ -32,19 +32,13 @@ const Join = () => {
     return (
         <div className="join-page">
             <header className="join-header">
-                <div className="logo">1 Page</div>
+                <Link to="/" className="logo-link">
+                    <div className="logo">1 Page</div>
+                </Link>
                 <nav className="join-nav">
-                    <a href="#">For him/her</a>
-                    <a href="#">For us</a>
-                    <a href="#">Join</a>
-                    <div className="dropdown">
-                        <button className="dropbtn">My papers</button>
-                        <div className="dropdown-content">
-                            <a href="/mygrouppage">Our paper</a>
-                            <a href="#">His/Her paper</a>
-                            <a href="#">For me</a>
-                        </div>
-                    </div>
+                    <Link to="/groupname">For us</Link>
+                    <Link to="/join">Join</Link>
+                    <Link to="/mygrouppage">Our papers</Link>
                 </nav>
             </header>
             <div className="join-content">
