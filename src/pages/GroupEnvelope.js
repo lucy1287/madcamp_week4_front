@@ -60,7 +60,7 @@ const GroupEnvelope = () => {
                     <div className="dropdown">
                         <button className="dropbtn">My papers</button>
                         <div className="dropdown-content">
-                            <a href="#">Our paper</a>
+                            <a href="/mygrouppage">Our paper</a>
                             <a href="#">His/Her paper</a>
                             <a href="#">For me</a>
                         </div>
