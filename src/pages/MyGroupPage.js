@@ -5,28 +5,22 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './MyGroupPage.css'; // 스타일 파일을 import 합니다
 import folder1 from '../assets/FolderImages/Folder1.png';
-import folder2 from '../assets/FolderImages/Folder2.png';
-import folder3 from '../assets/FolderImages/Folder3.png';
-import folder4 from '../assets/FolderImages/Folder4.png';
 import folder5 from '../assets/FolderImages/Folder5.png';
-import folder6 from '../assets/FolderImages/Folder6.png';
-import folder7 from '../assets/FolderImages/Folder7.png';
-import folder8 from '../assets/FolderImages/Folder8.png';
-
 
 const MyGroupPage = () => {
     const [groups, setGroups] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     // 이미지 배열
-    const images = [folder1, folder2, folder3, folder4, folder5, folder6, folder7, folder8];
+    const images = [folder1, folder5];
 
     useEffect(() => {
         const fetchGroups = async () => {
             try {
                 const user_no = localStorage.getItem('userNo');
                 const response = await axios.get(`http://localhost:5000/group/${user_no}`);
-                setGroups(response.data);
+                const validGroups = response.data.filter(group => group !== null); // null 값 필터링
+                setGroups(validGroups);
                 setLoading(false);
             } catch (err) {
                 setError(err);
