@@ -23,6 +23,7 @@ body {
 }
 
 .photothumb {
+  height:100%;
   width: 100%;
 }
 
@@ -62,12 +63,6 @@ body {
   background: #90be6d;
   color: #fff;
   transform: rotateY(180deg);
-}
-
-.desc {
-  padding: 12.5px; /* 10px * 1.25 */
-  color: #333;
-  text-align: center; /* 텍스트 가운데 정렬 */
 }
 
 .write-button {
