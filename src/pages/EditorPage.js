@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Link, useParams} from 'react-router-dom'; // Link 컴포넌트를 사용하기 위해 import
+import {Link, useParams, useNavigate} from 'react-router-dom'; // Link 컴포넌트를 사용하기 위해 import
 import '../EditorPage.css';
 
 const EditorPage = () => {
@@ -8,6 +8,7 @@ const EditorPage = () => {
     const [noteColor, setNoteColor] = useState('#ffffff');
     const [backgroundImage, setBackgroundImage] = useState('');
     const [selectedFont, setSelectedFont] = useState('Nanum GaramYeonGkot');  // 기본 폰트 설정
+    const navigate = useNavigate();
 
     const postItColors = ['#e1f7d5', '#ffbdbd', '#c9c9ff', '#f1cbff', '#ffb3ba', '#ffdfba', '#ffffba', '#baffc9', '#bae1ff'];
     const fonts = [
@@ -88,6 +89,8 @@ const EditorPage = () => {
             setNoteColor('#ffffff');
             setBackgroundImage('');
             setSelectedFont('Nanum GaramYeonGkot');
+
+            navigate(`/rollingpaper/${paper_no}`);
         } else {
             alert('Failed to submit note.');
         }
