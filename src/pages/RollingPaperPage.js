@@ -1,62 +1,68 @@
-import React, { useEffect } from 'react';
-import { initializeGrid } from './RollingPaper';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 import '../RollingPaper.css'; // 올바른 경로로 CSS 파일을 import합니다.
 
 const RollingPaperPage = () => {
-    useEffect(() => {
-        initializeGrid();
-    }, []);
+    const navigate = useNavigate();
+    const { paper_no } = useParams();
+    const [letters, setLetters] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const handleFlip = (e) => {
-        const item = e.currentTarget;
-        item.classList.toggle('flipped');
+    useEffect(() => {
+        console.log(paper_no);
+
+
+        const fetchLetters = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/letter?paper_no=${paper_no}`);
+                if (response.status === 200) {
+                    setLetters(response.data);
+                    setLoading(false);
+                } else {
+                    setError(`Error: ${response.status} ${response.statusText}`);
+                    setLoading(false);
+                }
+            } catch (err) {
+                setError(err);
+                setLoading(false);
+            }
+        };
+
+        if (paper_no) {
+            fetchLetters();
+        }
+    }, [paper_no]);
+
+    const handleWriteButtonClick = () => {
+        navigate('/editor');
     };
+
+    if (loading) {
+        return <div>로딩 중...</div>;
+    }
+
+    if (error) {
+        return <div>에러 발생: {error.message}</div>;
+    }
 
     return (
         <div className="rolling-paper-page">
             <h1>Rolling Paper Page</h1>
-            <div className="grid">
-                <div className="item photo" onClick={handleFlip}>
-                    <div className="content">
-                        <div className="front">
-                            <p>Some note content.</p>
+            <div className="preview-side">
+                {letters.map((letter) => (
+                    <div className="letter-card" key={letter.id} style={{ backgroundColor: `var(--color-${letter.color_no})` }}>
+                        <div className="letter-content">
+                            <p>{letter.content}</p>
                         </div>
-                        <div className="back">
-                            <img className="photothumb" src="https://assets.codepen.io/881020/dog1.jpg" alt="Dog 1" />
-                            <div className="desc">
-                                <p>Some description for the photo.</p>
-                            </div>
+                        <div className="letter-meta">
+                            <span>작성자: {letter.author}</span>
                         </div>
                     </div>
-                </div>
-                {/* Add more items here */}
-                <div className="item photo" onClick={handleFlip}>
-                    <div className="content">
-                        <div className="front">
-                            <p>Some note content.</p>
-                        </div>
-                        <div className="back">
-                            <img className="photothumb" src="https://assets.codepen.io/881020/dog2.jpg" alt="Dog 2" />
-                            <div className="desc">
-                                <p>Some description for the photo.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="item photo" onClick={handleFlip}>
-                    <div className="content">
-                        <div className="front">
-                            <p>Some note content.</p>
-                        </div>
-                        <div className="back">
-                            <img className="photothumb" src="https://i.pinimg.com/564x/b1/da/ea/b1daea970a878f2dc429e3ed32a6cb31.jpg" alt="Dog 9" />
-                            <div className="desc">
-                                <p>Some description for the photo.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                ))}
             </div>
+            <button className="write-button" onClick={handleWriteButtonClick}>글 작성하기</button>
         </div>
     );
 };
