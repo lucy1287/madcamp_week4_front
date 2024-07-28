@@ -10,7 +10,7 @@
 
 끝을 앞두고 함께한 추억들로 채울 롤링페이퍼를 작성할 수 있는 웹사이트입니다.
 
-![mainpage_logo.webp](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/92dbba6c-e943-4f1f-9092-8137ba69ba7f/mainpage_logo.webp)
+![mainpage_logo](https://github.com/user-attachments/assets/20bc421e-0a32-434d-8076-bec24ffbeddb)
 
 ---
 
@@ -46,7 +46,7 @@ BE
 - 서버: Node.js
 - DB: MySQL RDS
 
-![화면 캡처 2024-07-22 171356.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/e7416e00-1fd7-4b44-8b6b-fef01114735f/%ED%99%94%EB%A9%B4_%EC%BA%A1%EC%B2%98_2024-07-22_171356.png)
+![DB_schema_week4](https://github.com/user-attachments/assets/99d2c8c6-417e-4a4f-af0f-4e3135aca314)
 
 - IDE: VSCode, Intellij
 - SDK: Kakao
@@ -63,7 +63,7 @@ BE
 
 `Scroll Animation` 을 이용해서 홈페이지에 두개의 화면을 구현하였습니다.
 
-[MainPage.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/b843dae5-c5f8-4c0c-8858-5b57301b718c/MainPage.mp4)
+https://github.com/user-attachments/assets/a57e05f7-a3aa-4ccf-99b6-bbb15983b370
 
 Header 부분은 총 4개의 버튼이 있습니다.
 
@@ -78,7 +78,7 @@ Header 부분은 총 4개의 버튼이 있습니다.
 
 로그인은 `Kakao API`를 이용하였습니다. 클라이언트에서는 서버로부터 사용자를 식별할 수 있는 토큰을 받고 저장합니다. 
 
-[React App - Google Chrome 2024-07-25 19-05-01.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/107bb44e-2d8b-41c8-a758-8b8da5300780/React_App_-_Google_Chrome_2024-07-25_19-05-01.mp4)
+https://github.com/user-attachments/assets/236a0a42-aa94-485c-8d62-f699297d374c
 
 ## 3. 그룹 생성
 
@@ -88,13 +88,13 @@ Header 부분은 총 4개의 버튼이 있습니다.
 
 그룹 화면에 들어가면 그룹에 소속되어있는 사용자들의 Envelope이 보여지고 사용자의 Envelope을 누르면 해당 사용자에게 작성할 수 있는 롤링페이퍼로 연결됩니다. 
 
-[React App - Google Chrome 2024-07-25 19-38-47.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/0dce2f13-7673-4d14-a290-94a08f84816c/React_App_-_Google_Chrome_2024-07-25_19-38-47.mp4)
+https://github.com/user-attachments/assets/7cd64dfd-d55c-488f-9a99-fce00e7df116
 
 ## 4. 그룹 초대
 
 헤더의 Join을 누르면 초대 생성 코드를 입력하는 화면이 나오고 코드를 입력하면 그룹에 초대되고 소속된 유저들을 알 수 있다. 
 
-[React App - Chrome 2024-07-25 19-48-51.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/114e4447-3f2d-4c36-bf10-7d8fadf13aa1/React_App_-_Chrome_2024-07-25_19-48-51.mp4)
+https://github.com/user-attachments/assets/6b5052b8-1ae6-4842-9182-e6a10391629c
 
 ## 5. 롤링페이퍼 작성
 
@@ -104,12 +104,12 @@ Header 부분은 총 4개의 버튼이 있습니다.
 
 포스트잇을 누르면서 앞면과 뒷면을 볼 수 있다. 
 
-[React App - Chrome 2024-07-25 20-08-49.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/6f17b2fc-2351-4685-ab81-6c450c79515a/React_App_-_Chrome_2024-07-25_20-08-49.mp4)
+https://github.com/user-attachments/assets/2a492297-f851-4ea7-90b4-271565e29cc2
 
 ## 6. 소속 그룹 조회
 
 이 탭에서는 소속되어 있는 그룹을 조회할 수 있다.
 
-[React App - Google Chrome 2024-07-25 20-15-30.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/a8d3531c-4e67-4468-8312-c4db5e84c1cc/React_App_-_Google_Chrome_2024-07-25_20-15-30.mp4)
+https://github.com/user-attachments/assets/9d38af53-0cc5-497d-b804-4d3319836227
 
 ---
